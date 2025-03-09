@@ -3,8 +3,6 @@ using System.Collections.Generic;
 
 namespace tpmodul4_1302204106
 {
-    // Nomor 3
-    class KodePos
     {
         private static Dictionary<string, string> kodePosTable = new Dictionary<string, string>
         {
@@ -26,7 +24,7 @@ namespace tpmodul4_1302204106
             return kodePosTable.ContainsKey(kelurahan) ? kodePosTable[kelurahan] : "Kode Pos tidak ditemukan";
         }
     }
-
+  
     // Nomor 5
     class DoorMachine
     {
@@ -70,7 +68,6 @@ namespace tpmodul4_1302204106
     {
         static void Main(string[] args)
         {
-            // Nomor 3
             Console.WriteLine("Masukkan nama kelurahan: ");
             string kelurahan = Console.ReadLine();
             string kodePos = KodePos.GetKodePos(kelurahan);
