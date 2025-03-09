@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace tpmodul4_1302204106
 {
-    class KodePos
     {
         private static Dictionary<string, string> kodePosTable = new Dictionary<string, string>
         {
@@ -25,6 +24,45 @@ namespace tpmodul4_1302204106
             return kodePosTable.ContainsKey(kelurahan) ? kodePosTable[kelurahan] : "Kode Pos tidak ditemukan";
         }
     }
+  
+    // Nomor 5
+    class DoorMachine
+    {
+        private enum State { Terkunci, Terbuka }
+        private State currentState;
+
+        public DoorMachine()
+        {
+            currentState = State.Terkunci;
+            Console.WriteLine("Pintu terkunci");
+        }
+
+        public void KunciPintu()
+        {
+            if (currentState == State.Terbuka)
+            {
+                currentState = State.Terkunci;
+                Console.WriteLine("Pintu terkunci");
+            }
+            else
+            {
+                Console.WriteLine("Pintu sudah terkunci");
+            }
+        }
+
+        public void BukaPintu()
+        {
+            if (currentState == State.Terkunci)
+            {
+                currentState = State.Terbuka;
+                Console.WriteLine("Pintu tidak terkunci");
+            }
+            else
+            {
+                Console.WriteLine("Pintu sudah terbuka");
+            }
+        }
+    }
 
     class Program
     {
@@ -34,6 +72,11 @@ namespace tpmodul4_1302204106
             string kelurahan = Console.ReadLine();
             string kodePos = KodePos.GetKodePos(kelurahan);
             Console.WriteLine($"Kode pos {kelurahan}: {kodePos}");
+
+            // Nomor 5
+            DoorMachine pintu = new DoorMachine();
+            pintu.BukaPintu();
+            pintu.KunciPintu();
         }
     }
 }
