@@ -3,8 +3,10 @@ using System.Collections.Generic;
 
 namespace tpmodul4_1302204106
 {
+    // Kelas untuk mendapatkan kode pos berdasarkan nama kelurahan
+    class KodePos
     {
-        private static Dictionary<string, string> kodePosTable = new Dictionary<string, string>
+        private static Dictionary<string, string> _kodePosTable = new Dictionary<string, string>
         {
             { "Batununggal", "40266" },
             { "Kujangsari", "40287" },
@@ -21,27 +23,27 @@ namespace tpmodul4_1302204106
 
         public static string GetKodePos(string kelurahan)
         {
-            return kodePosTable.ContainsKey(kelurahan) ? kodePosTable[kelurahan] : "Kode Pos tidak ditemukan";
+            return _kodePosTable.ContainsKey(kelurahan) ? _kodePosTable[kelurahan] : "Kode Pos tidak ditemukan";
         }
     }
-  
-    // Nomor 5
+
+    // Kelas untuk pintu otomatis (DoorMachine) dengan state "Terkunci" dan "Terbuka"
     class DoorMachine
     {
         private enum State { Terkunci, Terbuka }
-        private State currentState;
+        private State _currentState;
 
         public DoorMachine()
         {
-            currentState = State.Terkunci;
+            _currentState = State.Terkunci;
             Console.WriteLine("Pintu terkunci");
         }
 
         public void KunciPintu()
         {
-            if (currentState == State.Terbuka)
+            if (_currentState == State.Terbuka)
             {
-                currentState = State.Terkunci;
+                _currentState = State.Terkunci;
                 Console.WriteLine("Pintu terkunci");
             }
             else
@@ -52,9 +54,9 @@ namespace tpmodul4_1302204106
 
         public void BukaPintu()
         {
-            if (currentState == State.Terkunci)
+            if (_currentState == State.Terkunci)
             {
-                currentState = State.Terbuka;
+                _currentState = State.Terbuka;
                 Console.WriteLine("Pintu tidak terkunci");
             }
             else
@@ -64,6 +66,7 @@ namespace tpmodul4_1302204106
         }
     }
 
+    // Program utama
     class Program
     {
         static void Main(string[] args)
@@ -73,7 +76,7 @@ namespace tpmodul4_1302204106
             string kodePos = KodePos.GetKodePos(kelurahan);
             Console.WriteLine($"Kode pos {kelurahan}: {kodePos}");
 
-            // Nomor 5
+            // Inisialisasi dan pengoperasian pintu otomatis
             DoorMachine pintu = new DoorMachine();
             pintu.BukaPintu();
             pintu.KunciPintu();
